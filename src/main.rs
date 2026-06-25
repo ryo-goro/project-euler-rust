@@ -1,3 +1,11 @@
+use project_euler_rust::problems::SOLVERS;
+
 fn main() {
-    println!("Hello, world!");
+    let n: usize = std::env::args()
+        .nth(1)
+        .expect("problem number")
+        .parse()
+        .unwrap();
+
+    println!("{}", SOLVERS[n - 1]());
 }
