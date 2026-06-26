@@ -1,3 +1,5 @@
+use crate::math::lcm;
+
 pub fn solve() -> u64 {
-    unimplemented!();
+    lcm::lcm_many(1..=20)
 }
