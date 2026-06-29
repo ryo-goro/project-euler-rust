@@ -18,3 +18,39 @@ pub fn is_prime(x: u64) -> bool {
 
     true
 }
+
+pub fn sieve(limit: usize) -> Vec<bool> {
+    if limit <= 1 {
+        return vec![false; limit];
+    }
+
+    let mut is_prime = vec![true; limit];
+
+    is_prime[0] = false;
+    is_prime[1] = false;
+
+    let mut even = 4;
+
+    while even < limit {
+        is_prime[even] = false;
+        even += 2;
+    }
+
+    let mut odd = 3;
+
+    while odd * odd < limit {
+        if is_prime[odd] {
+            let mut idx = odd * odd;
+            
+            while idx < limit {
+                is_prime[idx] = false;
+
+                idx += odd;
+            }
+        }
+
+        odd += 2;
+    }
+
+    is_prime
+}
