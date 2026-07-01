@@ -1,3 +1,5 @@
+use crate::math::digits;
+
 const NUMBERS: [&[u8; 50]; 100] = [
     b"37107287533902102798797998220837590246510135740250",
     b"46376937677490009712648124896970078050417018260538",
@@ -114,7 +116,7 @@ pub fn solve() -> u64 {
 
     // Process carries from least significant digit.
     sum[..NUM_DIGITS].reverse();
-    let num_digits = normalize_digits(&mut sum, NUM_DIGITS);
+    let num_digits = digits::propagate_carry(&mut sum, NUM_DIGITS);
 
     (num_digits - NUM_LEADING_DIGITS..num_digits)
         .rev()
@@ -125,21 +127,4 @@ fn add_ascii_digits(augend: &mut [u64], addend_ascii_digits: &[u8]) {
     for (i, &ascii_digit) in addend_ascii_digits.iter().enumerate() {
         augend[i] += (ascii_digit - b'0') as u64;
     }
-}
-
-fn normalize_digits(digits: &mut [u64], num_digits: usize) -> usize {
-    let mut highest = num_digits - 1;
-
-    for i in 0..highest {
-        digits[i + 1] += digits[i] / 10;
-        digits[i] %= 10;
-    }
-
-    while digits[highest] >= 10 {
-        digits[highest + 1] = digits[highest] / 10;
-        digits[highest] %= 10;
-        highest += 1;
-    }
-
-    highest + 1
 }
