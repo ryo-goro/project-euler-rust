@@ -17,6 +17,8 @@ pub fn solve() -> u64 {
 }
 
 fn cycle_len(n: usize) -> usize {
+    assert!(n > 0);
+    
     let mut first_seen = vec![0; n];
     let mut rem = 10 % n;
     let mut pos = 1;
