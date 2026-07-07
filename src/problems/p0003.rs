@@ -1,12 +1,12 @@
-pub fn solve() -> u64 {
-    let mut target = 600851475143u64;
+pub fn solve() -> i64 {
+    let mut target = 600851475143;
     let mut divisor = 3;
     let mut answer = 0;
 
     while divisor * divisor <= target {
         let mut tmp = target;
 
-        while tmp.is_multiple_of(divisor) {
+        while tmp % divisor == 0 {
             tmp /= divisor;
         }
 

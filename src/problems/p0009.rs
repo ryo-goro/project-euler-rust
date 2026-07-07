@@ -1,4 +1,4 @@
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let perimeter: u64 = 1000;
 
     // 0 < a < b < c, a + b + c = perimeter, hence 1 <= a < perimeter / 3
@@ -8,7 +8,7 @@ pub fn solve() -> u64 {
             let c = perimeter - a - b;
 
             if a * a + b * b == c * c {
-                return a * b * c;
+                return (a * b * c) as i64;
             }
         }
     }

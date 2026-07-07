@@ -2,7 +2,7 @@ use crate::math::divisors;
 
 const LIMIT: u64 = 10000;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut total = 0;
 
     for n in 1..LIMIT {
@@ -13,5 +13,5 @@ pub fn solve() -> u64 {
         }
     }
 
-    total
+    total as i64
 }

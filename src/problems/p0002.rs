@@ -1,8 +1,8 @@
 use std::iter;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     iter::successors(
-        Some((0u64, 1u64)),
+        Some((0i64, 1i64)),
          |&(a, b)| Some((b, a + b))
         )
         .map(|(_, f)| f)

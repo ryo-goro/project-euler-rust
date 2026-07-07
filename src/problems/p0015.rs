@@ -2,7 +2,7 @@ use crate::math::gcd;
 
 const N: usize = 20;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     // Compute C(40, 20) by cancelling common factors before multiplication:
     // C(40, 20) = 40! / (20!)^2 = (40 * ... * 21) / (20 * ... * 1)
     let mut numerators: Vec<u64> = (N + 1..=2 * N).map(|n| n as u64).collect();
@@ -23,5 +23,5 @@ pub fn solve() -> u64 {
         }
     }
 
-    numerators.iter().product()
+    numerators.iter().product::<u64>() as i64
 }

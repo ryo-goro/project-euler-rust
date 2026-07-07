@@ -4,7 +4,7 @@ const LIMIT: usize = 1000000;
 // but using the same value is a reasonable trade-off.
 const CACHE_LEN: usize = LIMIT;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     // Use a Vec to avoid stack overflow during tests.
     let mut cache = vec![0; CACHE_LEN];
     cache[1] = 1;
@@ -17,7 +17,7 @@ pub fn solve() -> u64 {
 
         if length > max_length {
             max_length = length;
-            answer = n as u64;
+            answer = n as i64;
         }
     }
 

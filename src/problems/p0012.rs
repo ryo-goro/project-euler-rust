@@ -2,7 +2,7 @@ use crate::math::divisors;
 
 const THRESHOLD: usize = 500;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut n = 1;
 
     loop {
@@ -15,7 +15,7 @@ pub fn solve() -> u64 {
             // Since n and (2n ± 1) are coprime,
             // num_divisors(n(2n ± 1)) = num_divisors(n) * num_divisors(2n ± 1).
             if num_divisors_n * divisors::num_divisors(odd_factor) > THRESHOLD {
-                return n * odd_factor;
+                return (n * odd_factor) as i64;
             }
         }
 

@@ -1,6 +1,6 @@
 use crate::math::palindrome;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut answer = 0;
 
     for a in 100..1000 {
@@ -13,5 +13,5 @@ pub fn solve() -> u64 {
         }
     }
 
-    answer
+    answer as i64
 }

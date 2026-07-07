@@ -2,7 +2,7 @@ const ONES: [&str; 9] = ["one", "two", "three", "four", "five", "six", "seven", 
 const TEENS: [&str; 10] = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
 const TENS: [&str; 8] = ["twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let ones_sum: usize = ONES.iter().map(|one| one.len()).sum();       // 1 ~ 9
     let teens_sum: usize = TEENS.iter().map(|teen| teen.len()).sum();   // 10 ~ 19
     let tens_sum: usize = TENS.iter().map(|ten| ten.len()).sum();       // 20, 30, ..., 90
@@ -21,5 +21,5 @@ pub fn solve() -> u64 {
         + sum_below_100 * 10                // The suffixes "one" to "ninety-nine" are repeated for each hundred block.
         + "one".len() + "thousand".len();
     
-    total_letters as u64
+    total_letters as i64
 }

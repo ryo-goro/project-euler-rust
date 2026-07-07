@@ -8,7 +8,7 @@ const CHUNK_BITS: usize = 60;
 // 2^1000 has 302 decimal digits, so POWER digits are more than enough.
 const MAX_DIGITS: usize = POWER;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     // Least significant digit first.
     let mut digits = [0; MAX_DIGITS];
     digits[0] = 1;
@@ -26,7 +26,7 @@ pub fn solve() -> u64 {
     multiply_digits(&mut digits[..num_digits], 1 << remaining_bits);
     num_digits = digits::propagate_carry(&mut digits, num_digits);
 
-    digits[..num_digits].iter().sum()
+    digits[..num_digits].iter().sum::<u64>() as i64
 }
 
 fn multiply_digits(digits: &mut [u64], multiplier: u64) {

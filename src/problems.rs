@@ -99,7 +99,7 @@ pub mod p0098;
 pub mod p0099;
 pub mod p0100;
 
-pub type Solver = fn() -> u64;
+pub type Solver = fn() -> i64;
 
 pub const SOLVERS: &[Solver] = &[
     p0001::solve,

@@ -107,7 +107,7 @@ const NUM_DIGITS: usize = 50;
 const NUM_LEADING_DIGITS: usize = 10;
 const SUM_LEN: usize = NUM_DIGITS + 2;  // 100 * (10^50 - 1) < 10^52
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut sum = [0; SUM_LEN];
 
     for ascii_digits in NUMBERS {
@@ -120,7 +120,7 @@ pub fn solve() -> u64 {
 
     (num_digits - NUM_LEADING_DIGITS..num_digits)
         .rev()
-        .fold(0, |value, i| value * 10 + sum[i])
+        .fold(0, |value, i| value * 10 + sum[i]) as i64
 }
 
 fn add_ascii_digits(augend: &mut [u64], addend_ascii_digits: &[u8]) {

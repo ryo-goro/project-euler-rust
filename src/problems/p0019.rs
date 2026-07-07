@@ -4,7 +4,7 @@ const END_YEAR: usize = TARGET_CENTURY * 100;
 const DAYS_IN_MONTH: [usize; 13] = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 const SUNDAY: usize = 0;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     // Weekday of the first day of the current month.
     // Initially set to 1 Jan 1901.
     // 1 Jan 1900 was a Monday (1).

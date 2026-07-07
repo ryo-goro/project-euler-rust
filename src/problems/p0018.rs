@@ -17,7 +17,7 @@ const TRIANGLE: [&[u64]; HEIGHT]  = [
     &[ 4, 62, 98, 27, 23,  9, 70, 98, 73, 93, 38, 53, 60,  4, 23]
 ];
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     // Dynamic programming:
     // Update the maximum path sums in place, one row at a time.
     let mut max_path_sums = [0; HEIGHT];
@@ -34,5 +34,5 @@ pub fn solve() -> u64 {
         }
     }
 
-    max_path_sums.into_iter().max().unwrap()
+    max_path_sums.into_iter().max().unwrap() as i64
 }

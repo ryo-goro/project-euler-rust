@@ -23,7 +23,7 @@ const GRID: [[u64; 20]; 20] = [
 
 const LEN: usize = 4;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     [
         max_horizontal_product(&GRID, LEN),
         max_vertical_product(&GRID, LEN),
@@ -32,7 +32,7 @@ pub fn solve() -> u64 {
     ]
     .into_iter()
     .max()
-    .unwrap()
+    .unwrap() as i64
 }
 
 fn max_horizontal_product<const N: usize>(grid: &[[u64; N]; N], len: usize) -> u64 {

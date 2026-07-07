@@ -1,5 +1,5 @@
 use crate::math::lcm;
 
-pub fn solve() -> u64 {
-    lcm::lcm_many(1..=20)
+pub fn solve() -> i64 {
+    lcm::lcm_many(1..=20) as i64
 }

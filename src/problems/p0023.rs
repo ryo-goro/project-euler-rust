@@ -2,7 +2,7 @@ use crate::math::divisors;
 
 const LIMIT: u64 = 28123;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut abundants = Vec::new();
 
     for n in 2..=LIMIT {
@@ -32,7 +32,7 @@ pub fn solve() -> u64 {
     is_abundant_sum
         .iter()
         .enumerate()
-        .filter_map(|(n, is_sum)| (!is_sum).then_some(n as u64))
+        .filter_map(|(n, is_sum)| (!is_sum).then_some(n as i64))
         .sum()
 }
 

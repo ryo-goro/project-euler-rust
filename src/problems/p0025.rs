@@ -2,7 +2,7 @@ use crate::math::digits;
 
 const MAX_DIGITS: usize = 1000;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut buf1 = [0; MAX_DIGITS];
     let mut buf2 = [0; MAX_DIGITS];
     buf1[0] = 1;

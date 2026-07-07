@@ -1,6 +1,6 @@
 const LIMIT: usize = 1000;
 
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     let mut max_len = 0;
     let mut res = 1;
 
@@ -13,7 +13,7 @@ pub fn solve() -> u64 {
         }
     }
 
-    res as u64
+    res as i64
 }
 
 fn cycle_len(n: usize) -> usize {

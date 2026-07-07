@@ -1,3 +1,3 @@
-pub fn solve() -> u64 {
+pub fn solve() -> i64 {
     unimplemented!();
 }
