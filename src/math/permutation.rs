@@ -34,20 +34,22 @@ pub fn nth_permutation(perm_len: usize, mut n: usize) -> Vec<usize> {
     let offset = perm_len - digits_len;
     permutation.extend(0..offset);
 
-    let mut used = [false; MAX_FACTORADIC_DIGITS];
+    // Bit mask implementation.
+    // u32 is big enough because 32 > MAX_FACTORADIC_DIGITS.
+    let mut used = 0u32;
 
     for &digit in factoradic_digits[..digits_len].iter().rev() {
         let mut digit = digit;
 
         // Find the `digit`-th unused element in ascending order.
         for element in 0..digits_len {
-            if used[element] {
+            if used & (1 <<element) != 0 {
                 continue;
             }
 
             if digit == 0 {
                 permutation.push(element + offset);
-                used[element] = true;
+                used |= 1 << element;
                 break;
             }
 
