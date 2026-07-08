@@ -41,7 +41,9 @@ pub fn solve() -> i64 {
 }
 
 fn is_pandigital(a: u64, b: u64, c: u64) -> bool {
-    let mut used = [false; 10];
+    // Bit mask implementation.
+    
+    let mut used = 0u16;
 
     for mut n in [a, b, c] {
         if n == 0 {
@@ -49,16 +51,16 @@ fn is_pandigital(a: u64, b: u64, c: u64) -> bool {
         }
 
         while n > 0 {
-            let digit = (n % 10) as usize;
+            let digit = (n % 10) as u16;
 
-            if digit == 0 || used[digit] {
+            if digit == 0 || used & (1 << digit) != 0 {
                 return false;
             }
 
-            used[digit] = true;
+            used |= 1 << digit;
             n /= 10;
         }
     }
 
-    used[1..].iter().all(|&b| b)
+    used == 0b11_1111_1110  // Expected bit mask for a 1–9 pandigital number.
 }
