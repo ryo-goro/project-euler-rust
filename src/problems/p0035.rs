@@ -5,6 +5,7 @@ const MAX_DIGITS: usize = 6;
 // Every digit of a circular prime with at least two digits must be 1, 3, 7, or 9,
 // since each digit becomes the least significant digit after some rotation.
 const DIGITS: [u64; 4] = [1, 3, 7, 9];
+const RADIX: usize = DIGITS.len();
 
 pub fn solve() -> i64 {
     // 2, 3, 5, and 7 are 1-digit primes, and they all are circular primes.
@@ -16,15 +17,15 @@ pub fn solve() -> i64 {
         let pow10 = 10u64.pow((num_digits - 1) as u32);
 
         // Generate all candidate `num_digits`-digit numbers.
-        'candidate: for mut seed in 0..DIGITS.len().pow(num_digits as u32) {
+        'candidate: for mut seed in 0..RADIX.pow(num_digits as u32) {
             let mut candidate = 0;
 
             // Convert `seed` to `candidate`.
             // Example: num_digits = 3, seed = 0 = 000 (in base 4) -> candidate = 111
             // Example: num_digits = 4, seed = 27 = 0123 (in base 4) -> candidate = 9731
             for _ in 0..num_digits {
-                candidate = candidate * 10 + DIGITS[seed % DIGITS.len()];
-                seed /= DIGITS.len();
+                candidate = candidate * 10 + DIGITS[seed % RADIX];
+                seed /= RADIX;
             }
 
             rotations[0] = candidate;
