@@ -59,3 +59,59 @@ pub fn nth_permutation(perm_len: usize, mut n: usize) -> Vec<usize> {
 
     permutation
 }
+
+/// Transforms the slice into its next lexicographical permutation.
+///
+/// Returns `true` if the next permutation exists.
+/// Returns `false` if the slice was already the last permutation,
+/// in which case it is rearranged into the first permutation.
+pub fn next_permutation<T: Ord>(perm: &mut [T]) -> bool {
+    let len = perm.len();
+
+    if len <= 1 {
+        return false;
+    }
+
+    let Some(i) = (0..len - 1).rev().find(|&idx| perm[idx] < perm[idx + 1]) else {
+        perm.reverse();
+        return false;
+    };
+
+    let j = (i + 1..len)
+        .rev()
+        .find(|&idx| perm[idx] > perm[i])
+        .expect("perm[i] < perm[i + 1], so a successor must exist");
+
+    perm.swap(i, j);
+    perm[i + 1..].reverse();
+
+    true
+}
+
+/// Transforms the slice into its previous lexicographical permutation.
+///
+/// Returns `true` if the previous permutation exists.
+/// Returns `false` if the slice was already the first permutation,
+/// in which case it is rearranged into the last permutation.
+pub fn prev_permutation<T: Ord>(perm: &mut [T]) -> bool {
+    let len = perm.len();
+
+    if len <= 1 {
+        return false;
+    }
+
+    let Some(i) = (0..len - 1).rev().find(|&idx| perm[idx] > perm[idx + 1]) else {
+        perm.reverse();
+        return false;
+    };
+
+    let j = (i + 1..len)
+        .rev()
+        .find(|&idx| perm[idx] < perm[i])
+        .expect("perm[i] > perm[i + 1], so a predecessor must exist");
+
+    perm.swap(i, j);
+    perm[i + 1..].reverse();
+
+    true
+}

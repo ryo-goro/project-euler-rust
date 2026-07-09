@@ -201,9 +201,8 @@ fn problem_0040() {
 }
 
 #[test]
-#[ignore]
 fn problem_0041() {
-    assert_eq!(0, problems::p0041::solve());
+    assert_eq!(7652413, problems::p0041::solve());
 }
 
 #[test]
