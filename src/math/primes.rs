@@ -19,6 +19,7 @@ pub fn is_prime(x: u64) -> bool {
     true
 }
 
+/// Returns a sieve for the range [0, limit), where `is_prime[n]` is `true` iff `n` is prime.
 pub fn sieve(limit: usize) -> Vec<bool> {
     if limit <= 1 {
         return vec![false; limit];
@@ -29,23 +30,16 @@ pub fn sieve(limit: usize) -> Vec<bool> {
     is_prime[0] = false;
     is_prime[1] = false;
 
-    let mut even = 4;
-
-    while even < limit {
+    for even in (4..limit).step_by(2) {
         is_prime[even] = false;
-        even += 2;
     }
 
     let mut odd = 3;
 
     while odd * odd < limit {
         if is_prime[odd] {
-            let mut idx = odd * odd;
-            
-            while idx < limit {
+            for idx in (odd * odd..limit).step_by(2 * odd) {
                 is_prime[idx] = false;
-
-                idx += odd;
             }
         }
 
