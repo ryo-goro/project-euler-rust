@@ -13,5 +13,5 @@ pub fn solve() -> i64 {
         }
     }
 
-    unreachable!();
+    unreachable!("there exists exactly one Pythagorean triplet for which a + b + c = 1000");
 }
