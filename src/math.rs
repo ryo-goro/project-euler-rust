@@ -1,3 +1,4 @@
+pub mod biguint;
 pub mod digits;
 pub mod divisors;
 pub mod gcd;
