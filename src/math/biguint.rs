@@ -31,8 +31,56 @@ impl BigUint {
         self.inner
     }
 
+    pub fn num_digits(&self) -> usize {
+        self.inner.len()
+    }
+
     pub fn digit_sum(&self) -> u64 {
         self.inner.iter().map(|&digit| digit as u64).sum()
+    }
+
+    fn add_digits(&mut self, digits: &[u8]) {
+        let mut high = self.inner.len();
+        let mut low = digits.len();
+
+        if high < low {
+            self.inner.extend_from_slice(&digits[high..]);
+            std::mem::swap(&mut high, &mut low);
+        }
+
+        let mut carry = 0;
+
+        for i in 0..low {
+            let x = self.inner[i] + digits[i] + carry;
+
+            if x >= 10 {
+                self.inner[i] = x - 10;
+                carry = 1;
+            } else {
+                self.inner[i] = x;
+                carry = 0;
+            }
+        }
+
+        if carry == 0 {
+            return;
+        }
+
+        for i in low..high {
+            let x = self.inner[i] + carry;
+
+            if x == 10 {
+                self.inner[i] = 0;
+                carry = 1;
+            } else {
+                self.inner[i] = x;
+                return;
+            }
+        }
+
+        if carry == 1 {
+            self.inner.push(1);
+        }
     }
 }
 
@@ -65,7 +113,7 @@ impl Add for BigUint {
 }
 
 impl AddAssign for BigUint {
-    fn add_assign(&mut self, mut rhs: Self) {
+    fn add_assign(&mut self, rhs: Self) {
         if self.is_zero() {
             self.inner = rhs.inner;
             return;
@@ -75,46 +123,26 @@ impl AddAssign for BigUint {
             return;
         }
 
-        let mut self_len = self.inner.len();
-        let mut rhs_len = rhs.inner.len();
+        self.add_digits(&rhs.inner);
+    }
+}
 
-        if rhs_len > self_len {
-            std::mem::swap(&mut self.inner, &mut rhs.inner);
-            std::mem::swap(&mut self_len, &mut rhs_len);
-        }
+impl Add<&BigUint> for BigUint {
+    type Output = Self;
 
-        let mut carry = 0;
+    fn add(mut self, rhs: &Self) -> Self::Output {
+        self += rhs;
+        self
+    }
+}
 
-        for i in 0..rhs_len {
-            let x = self.inner[i] + rhs.inner[i] + carry;
-
-            if x >= 10 {
-                self.inner[i] = x - 10;
-                carry = 1;
-            } else {
-                self.inner[i] = x;
-                carry = 0;
-            }
-        }
-
-        if carry == 0 {
+impl AddAssign<&BigUint> for BigUint {
+    fn add_assign(&mut self, rhs: &Self) {
+        if rhs.is_zero() {
             return;
         }
 
-        for i in rhs_len..self_len {
-            let x = self.inner[i] + carry;
-
-            if x == 10 {
-                self.inner[i] = 0;
-            } else {
-                self.inner[i] = x;
-                return;
-            }
-        }
-
-        if carry == 1 {
-            self.inner.push(1);
-        }
+        self.add_digits(&rhs.inner);
     }
 }
 
