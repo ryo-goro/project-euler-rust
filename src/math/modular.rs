@@ -1,23 +1,27 @@
 /// Computes `(base^exp) mod modulo` using binary exponentiation.
-pub fn pow_mod(base: u64, mut exp: u64, modulo: u64) -> u64 {
-    assert!(modulo > 0);
+pub fn mod_pow(base: u64, mut exp: u64, modulus: u64) -> u64 {
+    assert!(modulus > 0);
 
-    if modulo == 1 {
+    if modulus == 1 {
         return 0;
     }
 
-    let mut base = (base % modulo) as u128;
-    let modulo = modulo as u128;
-    let mut result = 1u128;
+    let mut base = base % modulus;
+    let mut result = 1;
 
     while exp > 0 {
         if exp & 1 == 1 {
-            result = result * base % modulo;
+            result = mod_mul(result, base, modulus);
         }
 
-        base = base * base % modulo;
+        base = mod_mul(base, base, modulus);
         exp >>= 1;
     }
 
-    result as u64
+    result
+}
+
+/// Computes `(a * b) mod modulus` without overflowing.
+pub fn mod_mul(a: u64, b: u64, modulus: u64) -> u64 {
+    ((a as u128 * b as u128) % modulus as u128) as u64
 }
