@@ -252,14 +252,24 @@ $\blacksquare$
 
 ## 定理 6.8 系
 
-$a, b, m, n$ を整数とし, $m$ と $n$ は互いに素であるとする.
-このとき次の (a) と (b) は同値である.
+$a, b, m, n$ を整数とするとき, 以下が成り立つ.
 
-(a) $a \equiv b \pmod{m}$ と $a \equiv b \pmod{n}$ が共に成り立つ.
+(1) $a \equiv b \pmod{mn}$ ならば,
+$a \equiv b \pmod{m}$ と $a \equiv b \pmod{n}$ が共に成り立つ.
 
-(b) $a \equiv b \pmod{mn}$ が成り立つ.
+(2) $m$ と $n$ が互いに素であるとき,
+$a \equiv b \pmod{mn}$ が成り立つ
+$\iff a \equiv b \pmod{m}$ と $a \equiv b \pmod{n}$ が共に成り立つ.
 
 ### 証明
+
+#### (1)
+
+このとき定義より $mn \mid (a - b)$ だから,
+定理 2.7 (4) より $m \mid (a - b)$ かつ $n \mid (a - b)$ となる.
+即ち $a \equiv b \pmod{m}$ と $a \equiv b \pmod{n}$ が共に成り立つ.
+
+#### (2)
 
 このとき定理 4.12 系より $\operatorname{lcm}(m, n) = |mn|$ だから,
 定理 6.2, 6.8 によって明らかである.

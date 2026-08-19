@@ -162,7 +162,7 @@ $$
 $x, y \in A_{mn}$ に対して $f(x) = f(y)$ であるとき,
 $f$ の定義より $x \bmod m = y \bmod m, \, x \bmod n = y \bmod n$ だから,
 定理 6.7 より $x \equiv y \pmod{m}, \, x \equiv y \pmod{n}$ が成り立つ.
-これと $m, n$ が互いに素であることから, 定理 6.8 系により
+これと $m, n$ が互いに素であることから, 定理 6.8 系 (2) により
 $x \equiv y \pmod{mn}$ が成り立つ.
 故に定理 6.7 より $x \bmod (mn) = y \bmod (mn)$ となるが,
 $x, y \in A_{mn}$ より $0 \le x, y < mn$ だから
