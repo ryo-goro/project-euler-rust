@@ -14,3 +14,4 @@
 6. [06. 合同式](./06_congruence.md)
 7. [07. フェルマーの小定理](./07_fermat_little_theorem.md)
 8. [08. 中国剰余定理](./08_chinese_remainder_theorem.md)
+9. [09. オイラーのトーシェント函数](./09_euler_totient_function.md)
