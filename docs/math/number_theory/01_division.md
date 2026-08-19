@@ -316,10 +316,148 @@ $\blacksquare$
 
 ## 定理 1.9
 
+$a, b \in \mathbb{Z}, \, b \neq 0$ とするとき,
+
+$$(a \bmod b) \bmod b = a \bmod b$$
+
+が成り立つ.
+
+### 証明
+
+$a \bmod b = b \cdot 0 + a \bmod b$ で,
+剰余の定義より $0 \le a \bmod b < |b|$.
+したがって剰余の一意性より明らか.
+$\blacksquare$
+
+## 定理 1.10
+
+$a_{1}, a_{2}, \cdots, a_{n}, b \in \mathbb{Z}, \, b \neq 0$ とするとき,
+以下が成り立つ.
+
+(1) $\displaystyle \left(\sum_{i = 1}^{n}a_{i}\right) \bmod b = \left(\sum_{i = 1}^{n}(a_{i} \bmod b)\right) \bmod b$.
+
+(2) $\displaystyle \left(\prod_{i = 1}^{n}a_{i}\right) \bmod b = \left(\prod_{i = 1}^{n}(a_{i} \bmod b)\right) \bmod b$.
+
+### 証明
+
+#### (1)
+
+定理 1.9 より
+
+$$
+    \left(\sum_{i = 1}^{1}a_{i}\right) \bmod b
+    = a_{1} \bmod b = (a_{1} \bmod b) \bmod b
+    = \left(\sum_{i = 1}^{1}(a_{i} \bmod b)\right) \bmod b
+$$
+
+が成り立つ.
+
+いま $1 \le m < n$ なる整数 $m$ に対して
+
+$$
+    \left(\sum_{i = 1}^{m}a_{i}\right) \bmod b
+    = \left(\sum_{i = 1}^{m}(a_{i} \bmod b)\right) \bmod b \tag{1.7}
+$$
+
+が成り立つとする.
+このとき定理 1.6 (1) より
+
+$$
+\begin{aligned}
+    \left(\sum_{i = 1}^{m + 1}a_{i}\right) \bmod b
+    &= \left(\sum_{i = 1}^{m}a_{i} + a_{m + 1}\right) \bmod b \\
+    &= \left(\left(\sum_{i = 1}^{m}a_{i}\right) \bmod b + a_{m + 1} \bmod b\right) \bmod b \tag{1.8}
+\end{aligned}
+$$
+
+が成り立つ.
+ここで定理 1.9 より $a_{m + 1} \bmod b = (a_{m + 1} \bmod b) \bmod b$ が成り立つから,
+これと $(1.7)$, 定理 1.6 (1) から
+
+$$
+\begin{aligned}
+    \left(\left(\sum_{i = 1}^{m}a_{i}\right) \bmod b + a_{m + 1} \bmod b\right) \bmod b
+    &= \left(\left(\sum_{i = 1}^{m}(a_{i} \bmod b)\right) \bmod b + (a_{m + 1} \bmod b) \bmod b\right) \bmod b \\
+    &= \left(\sum_{i = 1}^{m}(a_{i} \bmod b) + a_{m + 1} \bmod b\right) \bmod b \\
+    &= \left(\sum_{i = 1}^{m + 1}(a_{i} \bmod b)\right) \bmod b \tag{1.9}
+\end{aligned}
+$$
+
+が成り立つ.
+$(1.8)$, $(1.9)$ より
+
+$$
+    \left(\sum_{i = 1}^{m + 1}a_{i}\right) \bmod b
+    = \left(\sum_{i = 1}^{m + 1}(a_{i} \bmod b)\right) \bmod b
+$$
+
+を得る.
+
+以上から, 数学的帰納法により (1) が成り立つ.
+
+#### (2)
+
+定理 1.9 より
+
+$$
+    \left(\prod_{i = 1}^{1}a_{i}\right) \bmod b
+    = a_{1} \bmod b = (a_{1} \bmod b) \bmod b
+    = \left(\prod_{i = 1}^{1}(a_{i} \bmod b)\right) \bmod b
+$$
+
+が成り立つ.
+
+いま $1 \le m < n$ なる整数 $m$ に対して
+
+$$
+    \left(\prod_{i = 1}^{m}a_{i}\right) \bmod b
+    = \left(\prod_{i = 1}^{m}(a_{i} \bmod b)\right) \bmod b \tag{1.10}
+$$
+
+が成り立つとする.
+このとき定理 1.6 (2) より
+
+$$
+\begin{aligned}
+    \left(\prod_{i = 1}^{m + 1}a_{i}\right) \bmod b
+    &= \left(\left(\prod_{i = 1}^{m}a_{i}\right)a_{m + 1}\right) \bmod b \\
+    &= \left(\left(\prod_{i = 1}^{m}a_{i}\right) \bmod b\right)(a_{m + 1} \bmod b) \bmod b \tag{1.11}
+\end{aligned}
+$$
+
+が成り立つ.
+ここで定理 1.9 より $a_{m + 1} \bmod b = (a_{m + 1} \bmod b) \bmod b$ が成り立つから,
+これと $(1.10)$, 定理 1.6 (2) から
+
+$$
+\begin{aligned}
+    \left(\left(\prod_{i = 1}^{m}a_{i}\right) \bmod b\right)(a_{m + 1} \bmod b) \bmod b
+    &= \left(\left(\prod_{i = 1}^{m}(a_{i} \bmod b)\right) \bmod b\right)((a_{m + 1} \bmod b) \bmod b) \bmod b \\
+    &= \left(\prod_{i = 1}^{m}(a_{i} \bmod b)\right)(a_{m + 1} \bmod b) \bmod b \\
+    &= \left(\prod_{i = 1}^{m + 1}(a_{i} \bmod b)\right) \bmod b \tag{1.12}
+\end{aligned}
+$$
+
+が成り立つ.
+$(1.11)$, $(1.12)$ より
+
+$$
+    \left(\prod_{i = 1}^{m + 1}a_{i}\right) \bmod b
+    = \left(\prod_{i = 1}^{m + 1}(a_{i} \bmod b)\right) \bmod b
+$$
+
+を得る.
+
+以上から, 数学的帰納法により (2) が成り立つ.
+$\blacksquare$
+
+## 定理 1.11
+
 $a, b, c \in \mathbb{Z}, \, a \le b$ とするとき, 以下が成り立つ.
 
-1) $c > 0$ ならば $a / c \le b / c$.
-2) $c < 0$ ならば $a / c \ge b / c$.
+(1) $c > 0$ ならば $a / c \le b / c$.
+
+(2) $c < 0$ ならば $a / c \ge b / c$.
 
 ### 証明
 
@@ -340,21 +478,21 @@ $$
 \begin{aligned}
     c(q - q') = cq - cq' &\le r' - r \\
                          &\le r' &(\because r \ge 0) \\
-                         &< |c| &(\because r' < |c|) \tag{7}
+                         &< |c| &(\because r' < |c|) \tag{1.13}
 \end{aligned}
 $$
 
 となる.
 
-#### 1.
+#### (1)
 
-$c > 0$ のとき, $(7)$ より $c(q - q') < c$ となるから,
+$c > 0$ のとき, $(1.13)$ より $c(q - q') < c$ となるから,
 $q - q' < 1$, 即ち $q - q' \le 0$ となる.
 したがって $a / c = q \le q' = b / c$ である.
 
-#### 2.
+#### (2)
 
-$c < 0$ のとき, $(7)$ より $c(q - q') < -c$ となるから,
+$c < 0$ のとき, $(1.13)$ より $c(q - q') < -c$ となるから,
 $q - q' > -1$, 即ち $q - q' \ge 0$ となる.
 したがって $a / c = q \ge q' = b / c$ である.
 $\blacksquare$
