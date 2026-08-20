@@ -11,7 +11,7 @@
 $a, b, m$ を整数とし, $a \equiv b \pmod{m}$ であるとする.
 このとき $m \mid n, \, n \neq 0$ なる任意の $n \in \mathbb{Z}$ に対して
 
-$$(a \bmod n) \equiv b \pmod{m} \tag{8.1}$$
+$$a \bmod n \equiv b \pmod{m} \tag{8.1}$$
 
 が成り立つ.
 
@@ -27,7 +27,7 @@ $$r - b = a - nq - b = a - b - nq = mk - nq$$
 となる.
 ここで $m \mid n$ だから, 定理 2.4, 2.7 (1), (2) により
 $m \mid (mk - nq)$ が成り立つ.
-故に $m \mid (r - b)$, 即ち $(a \bmod n) \equiv b \pmod{m}$ が成り立つ.
+故に $m \mid (r - b)$, 即ち $a \bmod n \equiv b \pmod{m}$ が成り立つ.
 $\blacksquare$
 
 ## 定理 8.2
@@ -86,7 +86,7 @@ $x \equiv a \pmod{m}$ と $x \equiv b \pmod{n}$ が共に成り立つ.
 いま $y \in \mathbb{Z}$ も
 $0 \le y < mn, \, y \equiv a \pmod{m}, \, y \equiv b \pmod{n}$ をみたすとすれば,
 定理 6.1 (2), (3) により $x \equiv y \pmod{m}, \, x \equiv y \pmod{n}$ が成り立つ.
-これと $m, n$ が互いに素であることから, 定理 6.8 系により
+これと $m, n$ が互いに素であることから, 定理 6.8 系 (2) により
 $x \equiv y \pmod{mn}$ が成り立つ.
 故に定理 6.7 より $x \bmod (mn) = y \bmod (mn)$ となるが,
 $0 \le x, y < mn$ より $x \bmod (mn) = x, \, y \bmod(mn) = y$ だから,
@@ -108,7 +108,7 @@ $$
     x \equiv a_{1} &\pmod{m_{1}}, \\
     x \equiv a_{2} &\pmod{m_{2}}, \\
     &\cdots \\
-    x \equiv a_{n} &\pmod{m_{n}}
+    x \equiv a_{n} &\pmod{m_{n}} \tag{8.5}
 \end{aligned}
 $$
 
@@ -116,31 +116,86 @@ $$
 
 ### 証明
 
-まずこのような $x$ の存在について, $n$ に関する数学的帰納法によって証明する.
+$x_{1} = a_{1} \bmod m_{1}$ と置けば $0 \le x_{1} < m_{1}$ である.
+またこれより $x_{1} \bmod m_{1} = x_{1} = a_{1} \bmod m_{1}$ となる (剰余の一意性) から,
+定理 6.7 より $x_{1} \equiv a_{1} \pmod{m_{1}}$ が成り立つ.
 
-$n = 1$ のとき, $x = a_{1} \bmod m_{1}$ と置けば $0 \le x < m_{1}$ である.
-また定理 2.4 より $m_{1} \mid m_{1}$ であり,
-定理 6.1 (1) より $a_{1} \equiv a_{1} \pmod{m_{1}}$ だから,
-補題 8.1 より $x \equiv a_{1} \pmod{m_{1}}$ が成り立つ.
-
-いま $k$ を正整数とし, $n = k$ のときには本定理をみたすような $x$ が存在するとする.
-そして $a_{1}, \cdots, a_{k}, a_{k + 1}$ を整数,
-$m_{1}, \cdots, m_{k}, m_{k + 1}$ を正整数とし,
-これらのうちどの二つも互いに素
-($1 \le i, j \le k + 1, \, i \neq j \implies \gcd(m_{i}, m_{j}) = 1$)
-であるとする.
-このとき仮定より,
+いま $k$ を $1 \le k < n$ なる整数とし,
 
 $$
 \begin{aligned}
-    x' \equiv a_{1} &\pmod{m_{1}}, \\
+    x_{k} \equiv a_{1} &\pmod{m_{1}}, \\
+    x_{k} \equiv a_{2} &\pmod{m_{2}}, \\
     &\cdots \\
-    x' \equiv a_{k} &\pmod{m_{k}}
+    x_{k} \equiv a_{k} &\pmod{m_{k}} \tag{8.6}
 \end{aligned}
 $$
 
-をみたす整数 $x'$ で, $0 \le x' < m_{1} \cdots m_{k}$ となるもの存在する.
+をみたす整数 $x_{k}$ で, $0 \le x_{k} < m_{1}m_{2} \cdots m_{k}$ となるものが存在するとする.
+このとき仮定より $m_{k + 1}$ は $m_{1}, m_{2}, \cdots, m_{k}$ のどの一つとも互いに素となるから,
+定理 3.20 を繰り返し適用することにより, 
+$m_{k + 1}$ が $m_{1}m_{2} \cdots m_{k}$ と互いに素となることがわかる.
+よって定理 8.2 により,
 
+$$
+\begin{align}
+    &x_{k + 1} \equiv x_{k} \pmod{m_{1}m_{2} \cdots m_{k}}, \tag{8.7}\\
+    &x_{k + 1} \equiv a_{k + 1} \pmod{m_{k + 1}} \tag{8.8}
+\end{align}
+$$
 
+を共にみたす整数 $x_{k + 1}$ で,
+$0 \le x_{k + 1} < m_{1}m_{2} \cdots m_{k}m_{k + 1}$ となるものが存在する.
+$(8.7)$ から, $i = 1, 2, \cdots, k$ に対して定理 6.8 系 (1) より
+$x_{k + 1} \equiv x_{k} \pmod{m_{i}}$ が成り立つから,
+これと $(8.6)$ から定理 6.1 (3) により $x_{k + 1} \equiv a_{i} \pmod{m_{i}}$ が成り立つ.
+このことと $(8.8)$ から, $x_{k + 1}$ は
 
+$$
+\begin{aligned}
+    x_{k + 1} \equiv a_{1} &\pmod{m_{1}}, \\
+    x_{k + 1} \equiv a_{2} &\pmod{m_{2}}, \\
+    &\cdots \\
+    x_{k + 1} \equiv a_{k} &\pmod{m_{k}}, \\
+    x_{k + 1} \equiv a_{k + 1} &\pmod{m_{k + 1}}
+\end{aligned}
+$$
+
+をすべてみたす.
+
+以上から, 数学的帰納法により $(8.5)$ をみたす整数 $x$ で
+$0 \le x < m_{1}m_{2} \cdots m_{n}$ となるものが存在することが示された.
+
+いま $y \in \mathbb{Z}$ も $(8.5)$ (の $x$ をすべて $y$ に置き換えたもの) をみたし,
+$0 \le y < m_{1}m_{2} \cdots m_{n}$ であるとする.
+このとき定理 6.1 (2), (3) により
+
+$$
+\begin{aligned}
+    x \equiv y &\pmod{m_{1}}, \\
+    x \equiv y &\pmod{m_{2}}, \\
+    &\cdots \\
+    x \equiv y &\pmod{m_{n}} \tag{8.9}
+\end{aligned}
+$$
+
+が成り立つ.
+いま $m_{1}, m_{2}, \cdots, m_{n}$ はどの二つも互いに素だから,
+定理 3.20 を繰り返し適用することにより,
+$k = 2, 3, \cdots, n$ に対して $m_{k}$ が
+$m_{1}m_{2} \cdots m_{k - 1}$ と互いに素となることがわかる.
+このことと $(8.9)$ から, 定理 6.8 系 (2) を繰り返し適用することにより,
+
+$$x \equiv y \pmod{m_{1}m_{2} \cdots m_{n}}$$
+
+が成り立つことがわかる.
+故に定理 6.7 より
+
+$$x \bmod (m_{1}m_{2} \cdots m_{n}) = y \bmod (m_{1}m_{2} \cdots m_{n})$$
+
+となるが,
+$0 \le x, y < m_{1}m_{2} \cdots m_{n}$ より
+$x \bmod (m_{1}m_{2} \cdots m_{n}) = x, \, y \bmod(m_{1}m_{2} \cdots m_{n}) = y$
+だから $x = y$ である.
+これで $x$ の一意性についても示された.
 $\blacksquare$
