@@ -3,9 +3,7 @@
 /// Returns zero if either `a` or `b` is zero.
 pub fn gcd(mut a: u64, mut b: u64) -> u64 {
     while b != 0 {
-        let r = a % b;
-        a = b;
-        b = r;
+        (a, b) = (b, a % b);
     }
     a
 }
